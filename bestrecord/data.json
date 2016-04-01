@@ -1,0 +1,11 @@
+{"records": [
+        {
+            "year": 1995,
+            "winners_place": 2,
+            "standings": [
+                {"team": "Cleveland Indians", "abbrev": "CLE", "league": "American"},
+                {"team": "Cleveland Indians", "abbrev": "CLE", "league": "American"}
+            ]
+        }
+    ]
+}
