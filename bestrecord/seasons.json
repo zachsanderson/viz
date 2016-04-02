@@ -1,4 +1,4 @@
-{"season": [
+[
     {
         "season": 1995,
         "winners_place": 2,
@@ -67,4 +67,4 @@
             {"team": "Detroit Tigers", "abbrev": "DET", "league": "AL", "wins": 53, "losses": 109, "percentage" : 0.327, "division": "AL Central", "division_place": "6th", "result": "Did not advance"}
         ]
     }
-]};
+]
