@@ -14,6 +14,10 @@ d3.json('seasons.json', function(json) {
         teamHeight = 25,
         offset = 5;
 
+    var maxPlace = d3.max(json, function(d) { return +d.winners_place;} );
+
+    //console.log(maxPlace);
+
     var seasondiv = d3.select("#chart").append('svg')
     					.style('background', '#E7E0CB')
     					.attr('width', width + margin.left + margin.right)
@@ -24,19 +28,34 @@ d3.json('seasons.json', function(json) {
 						.data(json)
 						.enter()
 						.append("g")
-						.attr('transform', function(d,i) {return "translate("+((seasonWidth+offset)*i)+","+((teamHeight+offset)*d.winners_place)+")";})
+						.attr('transform', function(d,i) {return "translate("+((seasonWidth+offset)*i)+","+((teamHeight+offset)*(maxPlace - d.winners_place))+")";})
 						.attr("class","season")
 						.attr("width",seasonWidth)
 						.attr("height",height);
 						//.html(function (d) { return d.season + ' ' + d.winners_place; });
 	
-	seasondiv.selectAll("rect")
+	var standings = seasondiv.selectAll("rect")
 		.data(function(d) {return d.standings})
 		.enter()
-		.append("rect").attr("class","team")
+		.append("rect")
+		.attr("class", function(d) {return d.result_short + " " + d.division_place})
 		.attr("width",seasonWidth)
 		.attr("height",teamHeight)
 		.attr("transform", function(d,i) {return "translate(0,"+ ((teamHeight + offset) * i)+")";})
 		.html(function (d) { return d.team});
+
+	var text = seasondiv.selectAll("text")
+		.data(function(d) {return d.standings})
+		.enter()
+		.append("text")
+		.attr("x", seasonWidth/2)
+		.attr("y", function(d,i) {return ((teamHeight + offset) * i) + (teamHeight - offset);})
+		.attr("text-anchor", "middle")
+		.text(function(d) {return d.abbrev;});
+
+	//console.log(standings);
+
+	//standings.selectAll("rect").selectAll("text")
+
 
 });

@@ -1,4 +1,27 @@
 rect {
 	color: white;
+}
+
+.wswinner {
+	fill: red;
+}
+
+.wsloser {
+	fill: purple;
+}
+
+.ldsloser {
+	fill: gray;
+}
+
+.nlcsloser, .alcsloser {
+	fill: gray;
+}
+
+.dna {
 	fill: blue;
+}
+
+text {
+	fill: white;
 }
