@@ -9,10 +9,10 @@ d3.json('seasons.json', function(json) {
     var margin = { top: 30, right: 30, bottom: 40, left: 50 }
 
     var height = 1000 - margin.top - margin.bottom,
-        width = 800 - margin.left - margin.right,
-        seasonWidth = 50,
-        teamHeight = 25,
-        offset = 5;
+        width = 1100 - margin.left - margin.right,
+        seasonWidth = 45,
+        teamHeight = 20,
+        offset = 2;
 
     var maxPlace = d3.max(json, function(d) { return +d.winners_place;} );
 
@@ -49,7 +49,7 @@ d3.json('seasons.json', function(json) {
 		.enter()
 		.append("text")
 		.attr("x", seasonWidth/2)
-		.attr("y", function(d,i) {return ((teamHeight + offset) * i) + (teamHeight - offset);})
+		.attr("y", function(d,i) {return ((teamHeight + offset) * i) + (teamHeight/2);})
 		.attr("text-anchor", "middle")
 		.text(function(d) {return d.abbrev;});
 

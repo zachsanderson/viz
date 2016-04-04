@@ -18,10 +18,16 @@ rect {
 	fill: gray;
 }
 
+.wcloser {
+    
+}
+
 .dna {
 	fill: blue;
 }
 
 text {
 	fill: white;
+    font-size: .75em;
+    dominant-baseline: central;
 }
