@@ -51,6 +51,8 @@ d3.json('seasons.json', function(json) {
 		.attr("x", seasonWidth/2)
 		.attr("y", function(d,i) {return ((teamHeight + offset) * i) + (teamHeight/2);})
 		.attr("text-anchor", "middle")
+		.attr("class", function(d) {return d.result_short + " " + d.division_place})
+		//.attr("id", function(d) {return json.season + d.abbrev})
 		.text(function(d) {return d.abbrev;});
 
 	//console.log(standings);

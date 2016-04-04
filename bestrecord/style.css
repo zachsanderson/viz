@@ -2,28 +2,28 @@ rect {
 	color: white;
 }
 
-.wswinner {
-	fill: red;
+rect.wswinner {
+	fill: #FC1800; /*red*/
 }
 
-.wsloser {
-	fill: purple;
+rect.wsloser {
+	fill: #CA0072;
 }
 
-.ldsloser {
-	fill: gray;
+rect.nlcsloser, rect.alcsloser {
+	fill: #37186B;
 }
 
-.nlcsloser, .alcsloser {
-	fill: gray;
+rect.ldsloser {
+	fill: #502AD3;
 }
 
-.wcloser {
-    fill: yellow;
+rect.wcloser {
+    fill: #7D6ABF;
 }
 
-.dna {
-	fill: blue;
+rect.dna {
+	fill: #AAAAAA;
 }
 
 text {
