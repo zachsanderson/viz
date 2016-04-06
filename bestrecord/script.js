@@ -32,6 +32,8 @@ d3.json('seasons.json', function(json) {
 						.attr("class","season")
 						.attr("width",seasonWidth)
 						.attr("height",height);
+                        //.append("text")
+                        //.text(function(d) {return d.season});
 						//.html(function (d) { return d.season + ' ' + d.winners_place; });
 	
 	var standings = seasondiv.selectAll("rect")
