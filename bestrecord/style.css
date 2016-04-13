@@ -31,3 +31,9 @@ text {
     font-size: .75em;
     dominant-baseline: central;
 }
+
+text.year
+{
+  fill: black;
+  font-weight: bold;
+}
