@@ -1,3 +1,13 @@
+.standings,
+.standings-popup
+{
+  cursor: pointer;
+}
+.standings-popup rect
+{
+  stroke: #888;
+}
+
 rect {
 	color: white;
 }
