@@ -1,16 +1,16 @@
 // Constants:
 var MARGIN = { top: 30, right: 60, bottom: 30, left: 60 };
-var HEIGHT = 850 - MARGIN.top - MARGIN.bottom,
+var HEIGHT = 1100 - MARGIN.top - MARGIN.bottom,
   WIDTH = 1100 - MARGIN.left - MARGIN.right,
   SEASON_WIDTH = 45,
-  TEAM_HEIGHT = 16,
+  TEAM_HEIGHT = 20,
   OFFSET = 2,
   POPUP = { width: 160, height: 54, show: 500, hide: 250 };
 
 //
 // Create the basic SVG element and properties
 d3.select("#chart").append('svg')
-  .style('background', '#E7E0CB')
+  .style('background', '#FFFFFF')
   .attr('width', WIDTH + MARGIN.left + MARGIN.right)
   .attr('height', HEIGHT + MARGIN.top + MARGIN.right)
   .append('g')

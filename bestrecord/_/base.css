@@ -26,7 +26,6 @@ body {
   font-weight: 300;
   font-size: 1.2em;
   line-height: 1.2em;
-  background: #FDF6E3;
   color: #475B62;
 }
 
@@ -47,8 +46,7 @@ p {
 }
 
 .container {
-  width: 80%;
-  max-width: 1200px;
+  width: 1100px;
   margin: 0 auto;
   margin-top:10px;
 }
