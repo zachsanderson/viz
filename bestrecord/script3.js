@@ -85,9 +85,9 @@ d3.json('seasons.json', function(json) {
 function standingsExpand(el, data, i)
 {
   // First close any open popups
-  if (!d3.selectAll('.standings-popup').empty())
+  if (!d3.selectAll('.standings-tooltip').empty())
   {
-    standingsShrink(d3.select('.standings-popup'));
+    standingsShrink(d3.select('.standings-tooltip'));
   }
   
 
@@ -104,45 +104,50 @@ function standingsExpand(el, data, i)
   coords.y += (TEAM_HEIGHT / 2);
   var textX = coords.x;
 
-  var popup = d3.select('svg').append('g')
-    .attr('class', 'standings-popup')
+  var popup = d3.select('svg').append('foreignObject')
+    .attr('class', 'standings-tooltip')
+    .attr('x', coords.x)
+    .attr('y', coords.y)
+    .attr('width', 150)
+    .attr('height', 200)
+    .html("Test")
     .on('click', function(d) { standingsShrink(d3.select(this)); });
 
 
 
   // Rectangle
-  popup.append('rect')
-    .attr('x', coords.x).attr('y', coords.y)
-    .attr('class', el.select('rect').attr('class')) // For the same fill colors
-    .attr('width', 0).attr('height', 0);
+  //popup.append('rect')
+  //  .attr('x', coords.x).attr('y', coords.y)
+  //  .attr('class', el.select('rect').attr('class')) // For the same fill colors
+  //  .attr('width', 0).attr('height', 0);
 
   // Now the actual transition from a single point to a popup window
-  var transition = popup.transition().duration(POPUP.show);
+  //var transition = popup.transition().duration(POPUP.show);
     
-  transition.selectAll('rect')
-    .attr('width', POPUP.width)
-    .attr('height', POPUP.height)
-    .attr('x', coords.x - (POPUP.width / 2));
+  //transition.selectAll('rect')
+  //  .attr('width', POPUP.width)
+    // .attr('height', POPUP.height)
+    // .attr('x', coords.x - (POPUP.width / 2));
 
   // And add the text, after the end of the transition:
-  transition.each('end', function() {
-    var name = popup.append('text')
-      .attr('x', coords.x).attr('y', coords.y + 10)
-      .attr('text-anchor', 'middle')
-      .text(data.team);
-    // Handle the LA Angels of Anaheim:
-    if (data.team.length > 22) name.style('font-size', '10px');
+  // transition.each('end', function() {
+  //   var name = popup.append('text')
+  //     .attr('x', coords.x).attr('y', coords.y + 10)
+  //     .attr('text-anchor', 'middle')
+  //     .text(data.team);
+  //   // Handle the LA Angels of Anaheim:
+  //   if (data.team.length > 22) name.style('font-size', '10px');
 
-    popup.append('text')
-      .attr('x', coords.x).attr('y', coords.y + 26)
-      .attr('text-anchor', 'middle')
-      .text(data.division + "  (" + data.division_place + ")");
+    // popup.append('text')
+    //   .attr('x', coords.x).attr('y', coords.y + 26)
+    //   .attr('text-anchor', 'middle')
+    //   .text(data.division + "  (" + data.division_place + ")");
 
-    popup.append('text')
-      .attr('x', coords.x).attr('y', coords.y + 42)
-      .attr('text-anchor', 'middle')
-      .text(data.wins + " / " + data.losses);
-  });
+    // popup.append('text')
+    //   .attr('x', coords.x).attr('y', coords.y + 42)
+    //   .attr('text-anchor', 'middle')
+    //   .text(data.wins + " / " + data.losses);
+  // });
 }
 
 /**
