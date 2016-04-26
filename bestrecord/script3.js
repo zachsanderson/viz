@@ -45,7 +45,7 @@ d3.json('seasons.json', function(json) {
     .append('g')
     .attr('class', 'standings')
     // Add a mouse over handler to animate an expansion of our rectangle
-    .on('click', function(d, i) { standingsExpand(d3.select(this), d, i); })
+    .on('mouseover', function(d, i) { standingsExpand(d3.select(this), d, i); })
     // Move into the position of the rect, based on the offset of the team
     // in our data array (i) +1 (to allow space for the year in the column):
     .attr("transform", function(d,i) {
