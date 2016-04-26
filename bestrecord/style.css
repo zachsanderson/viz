@@ -89,6 +89,7 @@ foreignObject.rightarrow {
 .standings-tooltip p {
     font-size: .7em;
     margin-left: 65px;
+    margin-bottom: 0px;
 }
 
 .standings-tooltip img {
@@ -98,7 +99,7 @@ foreignObject.rightarrow {
 
 .standings-tooltip.leftarrow:after {
     right: 100%;
-    top: 25px;
+    top: 27px;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -113,7 +114,7 @@ foreignObject.rightarrow {
 
 .standings-tooltip.rightarrow:after {
     left: 100%;
-    top: 25px;
+    top: 27px;
     border: solid transparent;
     content: " ";
     height: 0;
