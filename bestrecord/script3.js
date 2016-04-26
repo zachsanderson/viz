@@ -156,17 +156,17 @@ function standingsExpand(el, data, i)
 function standingsShrink(el)
 {
   // Remove the text immediately
-  el.selectAll('text').remove();
+  el.remove();
 
   // Transition the popup rect
-  var transition = el.transition().duration(POPUP.hide)
+  // var transition = el.transition().duration(POPUP.hide)
     
-  transition.select('rect')
-    .attr('x', parseInt(el.select('rect').attr('x')) + (POPUP.width / 2))
-    .attr('width', 0)
-    .attr('height', 0)
-    .remove();
-  transition.remove();
+  // transition.select('rect')
+  //   .attr('x', parseInt(el.select('rect').attr('x')) + (POPUP.width / 2))
+  //   .attr('width', 0)
+  //   .attr('height', 0)
+  //   .remove();
+  // transition.remove();
 }
 
 /** 
