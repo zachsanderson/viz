@@ -65,9 +65,6 @@ d3.json('seasons.json', function(json) {
     .attr("text-anchor", "middle")
     .attr("class", function(d) {return d.result_short + " " + d.division_place})
     .text(function(d) {return d.abbrev;});
-  // Add a tooltip:
-  standings.append('title')
-    .html(function (d) { return d.team });
 
   // Add the year to the column (assuming offset position 0)
   seasonCol.append('text')
@@ -117,9 +114,6 @@ function standingsExpand(el, data, i)
     .append('xhtml:div')
     .attr('class', 'standings-tooltip ' + arrowclass)
     .on('click', function(d) { standingsShrink(d3.select(this)); });
-
-  // popup.append('xhtml:div')
-  //   .attr('class', 'standings-tooltip');
 
   popup.append('xhtml:img')
       .attr('src', 'images/reds.png');
