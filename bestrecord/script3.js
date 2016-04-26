@@ -5,7 +5,7 @@ var HEIGHT = 1100 - MARGIN.top - MARGIN.bottom,
   SEASON_WIDTH = 45,
   TEAM_HEIGHT = 20,
   OFFSET = 2,
-  POPUP = { width: 160, height: 54, show: 500, hide: 250 };
+  POPUP = { width: 260, height: 140, show: 500, hide: 250 };
 
 //
 // Create the basic SVG element and properties
@@ -85,35 +85,64 @@ d3.json('seasons.json', function(json) {
 function standingsExpand(el, data, i)
 {
   // First close any open popups
-  if (!d3.selectAll('.standings-tooltip').empty())
+  if (!d3.selectAll('foreignObject').empty())
   {
-    standingsShrink(d3.select('.standings-tooltip'));
+    standingsShrink(d3.select('foreignObject'));
   }
   
 
   // Calculate the top middle of the current Standings el, in the
   // primary SVG coordinate system. (Cannot use getBBox() for this)
+  var arrowclass = "leftarrow";
   var coords = getElementCoords(el, {x: el.attr('x'), y: el.attr('y') });
-  if (coords.x < (WIDTH / 2))
+  if (coords.x < (WIDTH - (POPUP.width)))
     {
-      coords.x += (SEASON_WIDTH * 1.5);
+      coords.x += SEASON_WIDTH;
+      arrowclass = "leftarrow";
     } else {
-      coords.x -= (SEASON_WIDTH / 2);
+      coords.x -= POPUP.width;
+      arrowclass = "rightarrow";
     }
 
-  coords.y += (TEAM_HEIGHT / 2);
+  coords.y -= 25 - (TEAM_HEIGHT / 2);
+
   var textX = coords.x;
 
   var popup = d3.select('svg').append('foreignObject')
-    .attr('class', 'standings-tooltip')
+    .attr('class', arrowclass)
     .attr('x', coords.x)
     .attr('y', coords.y)
-    .attr('width', 150)
-    .attr('height', 200)
-    .html("Test")
+    .attr('width', POPUP.width)
+    .attr('height', POPUP.height)
+    .append('xhtml:div')
+    .attr('class', 'standings-tooltip ' + arrowclass)
     .on('click', function(d) { standingsShrink(d3.select(this)); });
 
+  // popup.append('xhtml:div')
+  //   .attr('class', 'standings-tooltip');
 
+  popup.append('xhtml:img')
+      .attr('src', 'images/reds.png');
+
+  popup.append('xhtml:h2')
+      .html(data.team);
+
+  popup.append('xhtml:h3')
+      .html(data.division_place + " in the " + data.division);
+
+  popup.append('xhtml:h3')
+      .html(data.wins + " - " + data.losses);
+
+  if (data.result == "Did not advance")
+  {
+    popup.append('xhtml:p').html("Did not advance to playoffs");
+  } else {
+    popup.append('xhtml:p').html(data.result);
+  }
+  
+
+
+  //popup.html("<h2>" + data.team + "</h2>");
 
   // Rectangle
   //popup.append('rect')

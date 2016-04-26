@@ -47,13 +47,81 @@ text.year
   fill: black;
 }
 
-.standings-tooltip {   
-    position: absolute;         
-    text-align: center;                          
-    padding: 2px;               
-    font-size: .75em;      
-    background: lightsteelblue; 
+foreignObject {
+    position: absolute;
+}
+
+foreignObject.leftarrow { 
+    padding-left: 10px;
+}
+
+foreignObject.rightarrow { 
+    padding-right: 10px;
+}
+
+.standings-tooltip {           
+    /*text-align: center;                          */
+    font-size: .9em;
+    background: #fcf4dc; 
     border: 0px;        
-    border-radius: 8px;         
-    pointer-events: none;           
+    /*border-radius: 8px;         */
+    pointer-events: none;
+    padding: .5em;
+    color: #000000;
+    line-height: .9em;
+    position: relative;
+}
+
+.standings-tooltip h2 {
+    font-size: .9em;
+    /*margin-bottom: 0;*/
+    margin-left: 65px;
+    
+}
+
+.standings-tooltip h3 {
+    font-size: .75em;
+    /*margin-bottom: 0;*/
+    margin-left: 65px;
+    /*line-height: 1.1em;*/
+}
+
+.standings-tooltip p {
+    font-size: .7em;
+    margin-left: 65px;
+}
+
+.standings-tooltip img {
+    display: block;
+    float: left;
+}
+
+.standings-tooltip.leftarrow:after {
+    right: 100%;
+    top: 25px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(252, 244, 220, 0);
+    border-right-color: #FCF4DC;
+    border-width: 8px;
+    margin-top: -10px;
+}
+
+.standings-tooltip.rightarrow:after {
+    left: 100%;
+    top: 25px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(252, 244, 220, 0);
+    border-left-color: #FCF4DC;
+    border-width: 10px;
+    margin-top: -10px;
 }
