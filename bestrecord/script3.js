@@ -1,7 +1,7 @@
 // Constants:
-var MARGIN = { top: 30, right: 60, bottom: 30, left: 60 };
+var MARGIN = { top: 30, right: 10, bottom: 30, left: 10 };
 var HEIGHT = 1100 - MARGIN.top - MARGIN.bottom,
-  WIDTH = 1100 - MARGIN.left - MARGIN.right,
+  WIDTH = 1000 - MARGIN.left - MARGIN.right,
   SEASON_WIDTH = 45,
   TEAM_HEIGHT = 20,
   OFFSET = 2,
@@ -116,7 +116,7 @@ function standingsExpand(el, data, i)
     .on('click', function(d) { standingsShrink(d3.select(this)); });
 
   popup.append('xhtml:img')
-      .attr('src', 'images/reds.png');
+      .attr('src', 'images/' + data.abbrev + '.png');
 
   popup.append('xhtml:h2')
       .html(data.team);
