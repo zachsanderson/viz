@@ -16,12 +16,6 @@ d3.select("#chart").append('svg')
   .append('g')
   .attr('transform', 'translate('+ MARGIN.left + ', ' + MARGIN.top +')');
 
-// Define the div for the tooltip
-//var div = d3.select("body").append("div")
-//      .attr("class", "tooltip")
-//      .style("opacity", 0)
-//      .html("Test");
-
 // 
 // Read our data and create the graph:
 d3.json('seasons.json', function(json) {
@@ -48,6 +42,7 @@ d3.json('seasons.json', function(json) {
     .on('mouseover', function(d, i) { standingsExpand(d3.select(this), d, i); })
     // Move into the position of the rect, based on the offset of the team
     // in our data array (i) +1 (to allow space for the year in the column):
+    .on('mouseout', function(d, i) { standingsShrink(d3.select('foreignObject'), d, i); })
     .attr("transform", function(d,i) {
       return "translate(0,"+ ((TEAM_HEIGHT + OFFSET) * (i + 1))+")";
     });
@@ -133,44 +128,6 @@ function standingsExpand(el, data, i)
   } else {
     popup.append('xhtml:p').html(data.result);
   }
-  
-
-
-  //popup.html("<h2>" + data.team + "</h2>");
-
-  // Rectangle
-  //popup.append('rect')
-  //  .attr('x', coords.x).attr('y', coords.y)
-  //  .attr('class', el.select('rect').attr('class')) // For the same fill colors
-  //  .attr('width', 0).attr('height', 0);
-
-  // Now the actual transition from a single point to a popup window
-  //var transition = popup.transition().duration(POPUP.show);
-    
-  //transition.selectAll('rect')
-  //  .attr('width', POPUP.width)
-    // .attr('height', POPUP.height)
-    // .attr('x', coords.x - (POPUP.width / 2));
-
-  // And add the text, after the end of the transition:
-  // transition.each('end', function() {
-  //   var name = popup.append('text')
-  //     .attr('x', coords.x).attr('y', coords.y + 10)
-  //     .attr('text-anchor', 'middle')
-  //     .text(data.team);
-  //   // Handle the LA Angels of Anaheim:
-  //   if (data.team.length > 22) name.style('font-size', '10px');
-
-    // popup.append('text')
-    //   .attr('x', coords.x).attr('y', coords.y + 26)
-    //   .attr('text-anchor', 'middle')
-    //   .text(data.division + "  (" + data.division_place + ")");
-
-    // popup.append('text')
-    //   .attr('x', coords.x).attr('y', coords.y + 42)
-    //   .attr('text-anchor', 'middle')
-    //   .text(data.wins + " / " + data.losses);
-  // });
 }
 
 /**
@@ -180,16 +137,6 @@ function standingsShrink(el)
 {
   // Remove the text immediately
   el.remove();
-
-  // Transition the popup rect
-  // var transition = el.transition().duration(POPUP.hide)
-    
-  // transition.select('rect')
-  //   .attr('x', parseInt(el.select('rect').attr('x')) + (POPUP.width / 2))
-  //   .attr('width', 0)
-  //   .attr('height', 0)
-  //   .remove();
-  // transition.remove();
 }
 
 /** 
