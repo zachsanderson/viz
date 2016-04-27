@@ -12,7 +12,7 @@ var HEIGHT = 1100 - MARGIN.top - MARGIN.bottom,
 d3.select("#chart").append('svg')
   .style('background', '#FFFFFF')
   .attr('width', WIDTH + MARGIN.left + MARGIN.right)
-  .attr('height', HEIGHT + MARGIN.top + MARGIN.right)
+  .attr('height', HEIGHT + MARGIN.top + MARGIN.bottom)
   .append('g')
   .attr('transform', 'translate('+ MARGIN.left + ', ' + MARGIN.top +')');
 
