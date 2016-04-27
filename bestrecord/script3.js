@@ -21,6 +21,20 @@ d3.select("#chart").append('svg')
 d3.json('seasons.json', function(json) {
   var maxPlace = d3.max(json, function(d) { return +d.winners_place;} );
 
+  json.forEach(function(col){
+    for (var j = 1; j <= col.standings.length - 1; j++) {
+      if (col.standings[j].percentage == col.standings[j - 1].percentage) {
+        col.standings[j].tiedAbove = true;
+        col.standings[j-1].tiedBelow = true;
+      }
+      // if (j != col.standings.length - 1) {
+      //   if (col.standings[j].percentage == col.standings[j + 1].percentage) {
+      //     col.standings[j].tiedBelow = true;
+      //   }
+      // }
+    // col.newData = col.season + 100;
+    }})
+
   var seasonCol = d3.select("#chart svg g").selectAll("g")
     .data(json)
     .enter()
@@ -31,10 +45,26 @@ d3.json('seasons.json', function(json) {
         ((TEAM_HEIGHT+OFFSET)*(maxPlace - d.winners_place + 1))+")";
     });
 
+  // Set flag for expanding rect for tied records
+
+  // var tiedAbove = true;
+  // var tiedBelow = true;
+  // var heightExtension = TEAM_HEIGHT;
+  // if (tiedAbove) {
+  //   heightExtension += (OFFSET / 2);
+  // }
+  // if (tiedBelow) {
+  //   heightExtension += (OFFSET / 2);
+  // }
+  // var prevData = i>0?seasonCol.data()[i-1]:seasonCol.data()[seasonCol.data().length-1];
+
+  // if prevData.percentage = seasonCol.data {
+  //   console.log(seasonCol.data.)
+  // }
 
   // Create a group for each team:
   var standings = seasonCol.selectAll('g')
-    .data(function(d) { return d.standings; })
+    .data(function(d) { console.log(d); return d.standings; })
     .enter()
     .append('g')
     .attr('class', 'standings')
@@ -44,21 +74,33 @@ d3.json('seasons.json', function(json) {
     // in our data array (i) +1 (to allow space for the year in the column):
     .on('mouseout', function(d, i) { standingsShrink(d3.select('foreignObject'), d, i); })
     .attr("transform", function(d,i) {
-      return "translate(0,"+ ((TEAM_HEIGHT + OFFSET) * (i + 1))+")";
+      if (d.tiedAbove) {
+        return "translate(0,"+ (((TEAM_HEIGHT + OFFSET) * (i + 1)) - (OFFSET / 2))+")";  
+      } else {
+        return "translate(0,"+ ((TEAM_HEIGHT + OFFSET) * (i + 1))+")";
+      }
     });
 
   // Put a rect inside:
   // The position of these will be relative to the translate on our 'g.standings'
   standings.append("rect")
-    .attr("class", function(d) {return d.result_short + " " + d.division_place})
+    .attr("class", function(d) {return d.result_short + " place" + d.division_place})
     .attr("width", SEASON_WIDTH)
-    .attr("height", TEAM_HEIGHT);
+    .attr("height", function(d,i) {
+      if (d.tiedAbove && d.tiedBelow) {
+        return (TEAM_HEIGHT + OFFSET);
+      } else if (d.tiedAbove || d.tiedBelow) {
+        return (TEAM_HEIGHT + (OFFSET / 2));
+      } else {
+        return (TEAM_HEIGHT);
+      }
+    });
   // And add text ontop of that rect:
   standings.append("text")
     .attr("x", SEASON_WIDTH / 2)
     .attr("y", TEAM_HEIGHT / 2)
     .attr("text-anchor", "middle")
-    .attr("class", function(d) {return d.result_short + " " + d.division_place})
+    .attr("class", function(d) {return d.result_short + " place" + d.division_place})
     .text(function(d) {return d.abbrev;});
 
   // Add the year to the column (assuming offset position 0)
@@ -135,7 +177,7 @@ function standingsExpand(el, data, i)
  */
 function standingsShrink(el)
 {
-  // Remove the text immediately
+  // Remove the element
   el.remove();
 }
 

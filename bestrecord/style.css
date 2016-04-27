@@ -39,12 +39,22 @@ rect.dna {
 text {
 	fill: white;
     font-size: .75em;
-    dominant-baseline: central;
+    dominant-baseline: central;   
 }
 
 text.year
 {
   fill: black;
+}
+
+text.wcloser,
+text.wswinner.place2nd, text.wswinner.place3rd, 
+text.wsloser.place2nd, text.wsloser.place3rd, 
+text.nlcsloser.place2nd, text.nlcsloser.place3rd, 
+text.alcsloser.place2nd, text.alcsloser.place3rd,
+text.ldsloser.place2nd, text.ldsloser.place3rd
+{
+    font-style: italic;
 }
 
 foreignObject {
