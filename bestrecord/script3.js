@@ -38,7 +38,7 @@ d3.json('seasons.json', function(json) {
     .attr("class","season")
     .attr('transform', function(d,i) {
       return "translate("+((SEASON_WIDTH+OFFSET)*i)+","+
-        ((TEAM_HEIGHT+OFFSET)*(maxPlace - d.winners_place + 1))+")";
+        ((TEAM_HEIGHT+OFFSET)*(maxPlace - d.winners_place))+")";
     });
 
   // Create a group for each team:
