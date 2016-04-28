@@ -13,11 +13,25 @@
 		<div id="chart"></div>
 		<div class="introduction">
 		<p class="introduction">This idea came from <a href="http://www.flipflopflyin.com/flipflopflyball/info-bestrecord.html">Craig Robinson's Best Record in Baseball</a>. I can't emphasize enough how unoriginal my version is. You should check out Craig's original and <a href="http://www.flipflopflyin.com/flipflopflyball/info-beaneoakland.html">his other visualizations</a>.</p>
-		<p>You can read my reasoning behind my approach <a href="http://zachsanderson.com/projects/best-record-in-baseball">here</a> and find the <a href="https://github.com/zachsanderson/viz/tree/master/bestrecord">source on Github</a>.
+		<p>Steve Davis from <a href="http://bioneos.com/">Bio::Neos</a> also helped guide me through the D3.</p>
+		<p>You can read my notes and reasoning behind my approach <a href="http://zachsanderson.com/projects/best-record-in-baseball">here</a> and find the <a href="https://github.com/zachsanderson/viz/tree/master/bestrecord">source on Github</a>.
 		</div>
 		<div class="legend">
+			<svg width="250" height="250" style="background: rgb(255,255,255);">
+				<g class="standings" transform="translate(0,0)"><rect class="wswinner" width="40" height="18"></rect><text x="20" y="9" text-anchor="middle" class="wswinner">BSB</text><text x="50" y="9" text-anchor="start" class="legend-text">Won World Series</text></g>
+				<g class="standings" transform="translate(0,20)"><rect class="wsloser" width="40" height="18"></rect><text x="20" y="9" text-anchor="middle" class="wsloser">BSB</text><text x="50" y="9" text-anchor="start" class="legend-text">Lost World Series</text></g>
+				<g class="standings" transform="translate(0,40)"><rect class="nlcsloser" width="40" height="18"></rect><text x="20" y="9" text-anchor="middle" class="nlcsloser">BSB</text><text x="50" y="9" text-anchor="start" class="legend-text">Lost LCS</text></g>
+				<g class="standings" transform="translate(0,60)"><rect class="ldsloser" width="40" height="18"></rect><text x="20" y="9" text-anchor="middle" class="ldsloser">BSB</text><text x="50" y="9" text-anchor="start" class="legend-text">Lost LDS</text></g>
+				<g class="standings" transform="translate(0,80)"><rect class="wcloser" width="40" height="18"></rect><text x="20" y="9" text-anchor="middle" class="wcloser">BSB</text><text x="50" y="9" text-anchor="start" class="legend-text">Lost Wild Card Game</text></g>
+				<g class="standings" transform="translate(0,100)"><rect class="dna" width="40" height="18"></rect><text x="20" y="9" text-anchor="middle" class="dna">BSB</text><text x="50" y="9" text-anchor="start" class="legend-text">Did not advance to Playoffs</text></g>
+				<g class="standings" transform="translate(0,120)"><text x="20" y="10" text-anchor="middle" class="legend-text wcloser">BSB</text><text x="50" y="9" text-anchor="start" class="legend-text">Wild Card teams in italics</text></g>
+				<g class="standings" transform="translate(0,140)"><rect class="nlcsloser" width="40" height="19"></rect><text x="20" y="9" text-anchor="middle" class="nlcsloser">BSB</text><text x="50" y="11" text-anchor="start" class="legend-text">Team boxes blended together</text></g>
+				<g class="standings" transform="translate(0,159)"><rect class="ldsloser" width="40" height="19"></rect><text x="20" y="9" text-anchor="middle" class="ldsloser">FFB</text><text x="50" y="8" text-anchor="start" class="legend-text">if they share the same record</text></g>
+				<g class="standings" transform="translate(0,185)"><text x="5" y="9" text-anchor="start" class="legend-text">Hover over each team box for more details</text></g>
+			</svg>
 		</div>
 	</div>
+
 	<script src="_/d3.min.js" charset="utf-8"></script>
 	<script src="script3.js"></script>
 </body>

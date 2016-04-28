@@ -134,4 +134,13 @@ foreignObject.rightarrow {
 
 .introduction {
     width: 600px;
+    float: left;
+}
+
+.legend {
+    margin-left: 675px;
+}
+
+.legend-text {
+    fill: black;
 }
