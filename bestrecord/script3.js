@@ -21,18 +21,14 @@ d3.select("#chart").append('svg')
 d3.json('seasons.json', function(json) {
   var maxPlace = d3.max(json, function(d) { return +d.winners_place;} );
 
+  // Append flag to data for tied team records
   json.forEach(function(col){
+    // Only need to start at 1 and compare since there is no team tied above the highest record
     for (var j = 1; j <= col.standings.length - 1; j++) {
       if (col.standings[j].percentage == col.standings[j - 1].percentage) {
         col.standings[j].tiedAbove = true;
         col.standings[j-1].tiedBelow = true;
       }
-      // if (j != col.standings.length - 1) {
-      //   if (col.standings[j].percentage == col.standings[j + 1].percentage) {
-      //     col.standings[j].tiedBelow = true;
-      //   }
-      // }
-    // col.newData = col.season + 100;
     }})
 
   var seasonCol = d3.select("#chart svg g").selectAll("g")
@@ -45,34 +41,21 @@ d3.json('seasons.json', function(json) {
         ((TEAM_HEIGHT+OFFSET)*(maxPlace - d.winners_place + 1))+")";
     });
 
-  // Set flag for expanding rect for tied records
-
-  // var tiedAbove = true;
-  // var tiedBelow = true;
-  // var heightExtension = TEAM_HEIGHT;
-  // if (tiedAbove) {
-  //   heightExtension += (OFFSET / 2);
-  // }
-  // if (tiedBelow) {
-  //   heightExtension += (OFFSET / 2);
-  // }
-  // var prevData = i>0?seasonCol.data()[i-1]:seasonCol.data()[seasonCol.data().length-1];
-
-  // if prevData.percentage = seasonCol.data {
-  //   console.log(seasonCol.data.)
-  // }
-
   // Create a group for each team:
   var standings = seasonCol.selectAll('g')
-    .data(function(d) { console.log(d); return d.standings; })
+    .data(function(d) { 
+      //console.log(d); 
+      return d.standings; 
+    })
     .enter()
     .append('g')
     .attr('class', 'standings')
     // Add a mouse over handler to animate an expansion of our rectangle
     .on('mouseover', function(d, i) { standingsExpand(d3.select(this), d, i); })
+    // Add mouseout for when mouse is not on any team rect
+    .on('mouseout', function(d, i) { standingsShrink(d3.select('foreignObject'), d, i); })
     // Move into the position of the rect, based on the offset of the team
     // in our data array (i) +1 (to allow space for the year in the column):
-    .on('mouseout', function(d, i) { standingsShrink(d3.select('foreignObject'), d, i); })
     .attr("transform", function(d,i) {
       if (d.tiedAbove) {
         return "translate(0,"+ (((TEAM_HEIGHT + OFFSET) * (i + 1)) - (OFFSET / 2))+")";  
@@ -113,7 +96,7 @@ d3.json('seasons.json', function(json) {
 });
 
 /**
- * Standings popup window that is appended, and then animated
+ * Standings popup window that is appended
  * onto the top of the graph, for the additional information.
  */
 function standingsExpand(el, data, i)
@@ -129,6 +112,7 @@ function standingsExpand(el, data, i)
   // primary SVG coordinate system. (Cannot use getBBox() for this)
   var arrowclass = "leftarrow";
   var coords = getElementCoords(el, {x: el.attr('x'), y: el.attr('y') });
+  // Flag whether arrow should be on the left or right of the popup,
   if (coords.x < (WIDTH - (POPUP.width)))
     {
       coords.x += SEASON_WIDTH;
@@ -138,10 +122,12 @@ function standingsExpand(el, data, i)
       arrowclass = "rightarrow";
     }
 
+  // Adjust height so arrow of popup is down the side of the popup somewhat
   coords.y -= 25 - (TEAM_HEIGHT / 2);
 
   var textX = coords.x;
 
+  // Add foreignObject for popup to allow for HTML elements and formatting
   var popup = d3.select('svg').append('foreignObject')
     .attr('class', arrowclass)
     .attr('x', coords.x)
