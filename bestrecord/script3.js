@@ -1,9 +1,9 @@
 // Constants:
 var MARGIN = { top: 30, right: 10, bottom: 30, left: 10 };
-var HEIGHT = 1100 - MARGIN.top - MARGIN.bottom,
-  WIDTH = 1000 - MARGIN.left - MARGIN.right,
-  SEASON_WIDTH = 45,
-  TEAM_HEIGHT = 20,
+var HEIGHT = 950 - MARGIN.top - MARGIN.bottom,
+  WIDTH = 900 - MARGIN.left - MARGIN.right,
+  SEASON_WIDTH = 40,
+  TEAM_HEIGHT = 18,
   OFFSET = 2,
   POPUP = { width: 260, height: 140, show: 500, hide: 250 };
 

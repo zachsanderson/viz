@@ -24,7 +24,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1em;
   line-height: 1.2em;
   color: #475B62;
   margin: 10px 10px;
@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 p {
@@ -51,7 +51,7 @@ p {
 }
 
 .container {
-  width: 1000px;
+  width: 900px;
   margin: 0 auto;
   margin-top:10px;
 }

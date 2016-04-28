@@ -131,3 +131,7 @@ foreignObject.rightarrow {
     border-width: 10px;
     margin-top: -10px;
 }
+
+.introduction {
+    width: 600px;
+}
