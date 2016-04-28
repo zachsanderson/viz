@@ -70,11 +70,9 @@ foreignObject.rightarrow {
 }
 
 .standings-tooltip {           
-    /*text-align: center;                          */
     font-size: .9em;
     background: #fcf4dc; 
     border: 0px;        
-    /*border-radius: 8px;         */
     pointer-events: none;
     padding: .5em;
     color: #000000;
@@ -84,16 +82,13 @@ foreignObject.rightarrow {
 
 .standings-tooltip h2 {
     font-size: .9em;
-    /*margin-bottom: 0;*/
     margin-left: 65px;
     
 }
 
 .standings-tooltip h3 {
     font-size: .75em;
-    /*margin-bottom: 0;*/
     margin-left: 65px;
-    /*line-height: 1.1em;*/
 }
 
 .standings-tooltip p {
