@@ -1,7 +1,7 @@
 // Constants:
 var MARGIN = { top: 30, right: 10, bottom: 30, left: 10 };
 var HEIGHT = 950 - MARGIN.top - MARGIN.bottom,
-  WIDTH = 900 - MARGIN.left - MARGIN.right,
+  WIDTH = 1020 - MARGIN.left - MARGIN.right,
   SEASON_WIDTH = 40,
   TEAM_HEIGHT = 18,
   OFFSET = 2,
